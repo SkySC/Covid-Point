@@ -1,0 +1,475 @@
+@use './forwards/index' as *
+@import './fontawesome/brands'
+@import './fontawesome/solid'
+
+/*
+ * Allgemeines Styling
+ */
+
+*
+    margin: 0
+    padding: 0
+    text-align: justify
+    font-family: 'Varela Round', sans-serif
+    box-sizing: border-box
+
+html
+    scroll-behavior: smooth
+    -ms-overflow-style: none
+    scrollbar-width: none
+
+    &::-webkit-scrollbar
+        display: none
+
+body
+    @include defaultFlexCenter(column)
+    gap: 5rem
+
+span
+    color: #fff
+    font-size: 1.4rem
+    line-height: 1.5rem
+
+a
+    text-decoration: none
+    color: #fff
+
+p
+    font-size: 1.3rem
+    line-height: 2rem
+    max-width: 60rem
+
+ul
+    padding: 1.4rem
+
+    li
+        font-size: $defaultText
+        line-height: $defaultLineHeight
+        text-align: left
+        max-width: 60rem
+
+img
+    @extend .image-overlay
+    filter: grayscale(1)
+    z-index: -1
+
+label
+    font-weight: bold
+    letter-spacing: .1rem
+
+input, textarea
+    width: 90%
+    box-shadow: 0 0.5em 0.5em -0.4em lighten(#000, 40%)
+    border: none
+    border-radius: 20px
+    padding: .5rem 1rem
+    background: #eff3f7
+
+footer
+    @include defaultFlexCenter(column)
+    height: 20rem
+    width: 100vw
+    background: $gradient
+    border-radius: 30px 30px 0 0
+    gap: 10%
+
+    &::before
+        @include gradientBackgroundElement(4rem, 100%)
+        margin-bottom: 17rem
+        transform: rotate(180deg)
+
+/*
+ * Navigationsleiste
+ * 1) Logo
+ * 2) Hamburger-Menü
+ * 3) Navigationsleiste
+ */
+
+.logo
+    color: lighten(#000, 30%)
+    justify-self: flex-end
+
+    @extend .fas
+    font-size: 1.6rem
+
+    transition: $navbarTransition
+
+    &::before
+        content: fa-content($fa-var-shield-virus)
+    
+.hide-logo
+    @include hideItem()
+
+.show-navbar
+    opacity: 1
+
+.hide-navbar
+    @include hideItem()
+
+.main-nav
+    display: grid
+    grid-template-columns: 1fr 1fr
+    align-items: center
+    padding: 0 .5rem
+    position: fixed
+    width: 100vw
+    height: 3rem
+    top: 0
+    background: #fff
+    border-bottom: 4px solid
+    border-image-slice: 1
+    border-image-source: $navbar-gradient
+    transition: $navbarTransition
+
+.hide-menu-content
+    @include defaultFlexCenter(column)
+    position: absolute
+    top: 0
+    transition: $defaultTransition
+    left: -100%
+    width: 100vw
+    height: 100vh
+    opacity: 0
+
+    .navbar-menu-entries
+        opacity: 0
+
+.show-menu-content
+    background: #fff
+    transition: left linear .3s, opacity linear .3s
+    left: 0
+    opacity: 1
+
+    .navbar-menu-entries
+        @include defaultFlexCenter(column)
+        list-style: none
+        gap: 2rem
+        transition: opacity 3s ease
+        opacity: 1
+
+        li
+            font-size: $defaultMenu
+            font-weight: bold
+
+.gradient-link
+    text-decoration: none
+    background: $text-gradient
+    -webkit-text-fill-color: transparent
+    -webkit-background-clip: text
+
+.hide-hamburger-nav-button
+    @include hideItem()
+
+.hamburger-nav-button
+    z-index: 1
+    @include defaultFlexCenter(column)
+    cursor: pointer
+    width: 2rem
+    aspect-ratio: 1 / 1
+    background: transparent    
+    gap: 0.4rem
+    border: none
+    transition: $navbarTransition
+    
+.hamburger-open-icon-line
+    width: 100%
+    height: 0.25rem
+    border-radius: 30%
+    background: $lighterBlack
+    transition: all .4s linear .3s
+
+    &:nth-of-type(2)
+        align-self: flex-start
+        width: 1.5rem
+        opacity: 1
+        
+        &::before
+            @include closedIconLine(-45deg)
+            transition: all .5s linear
+            opacity: 0
+
+        &::after
+            @include closedIconLine(-45deg)
+            transition: all .5s linear
+            opacity: 0
+
+.hamburger-closed-icon
+    transition: all .4s linear
+
+    &:first-of-type
+        width: 0
+        opacity: 0
+
+    &:nth-of-type(2)
+        width: 0
+        opacity: 1
+
+        &::before
+            @include closedIconLine(-45deg)
+            transition: all .5s linear .45s
+
+        &::after
+            @include closedIconLine(45deg)
+            transition: all .5s linear .45s
+    
+    &:last-of-type
+        width: 0
+        opacity: 0
+
+/*
+ * Hauptbereich mit Inhalten
+ */
+
+#content
+    @include defaultFlexCenter(column)
+    width: 100%
+    gap: 2rem
+
+.text-section
+    @include defaultFlexCenter(column)
+    gap: 2rem
+    width: 90vw
+    max-width: 60rem
+    padding: 0 1rem
+    border: 3px solid
+    border-image: $transparent-gradient
+    color: lighten(#000, 20%)
+
+.numbered-bullet-points
+    list-style: decimal
+
+.news-title, .news-sub-title
+    font-size: 1.4rem
+    line-height: 2.3rem
+    margin-bottom: 1.8rem
+    text-align: center
+    letter-spacing: .1rem
+
+.image-overlay
+    width: 100%
+    min-height: 13rem
+    background: $gradient
+    border-radius: 30px
+    mix-blend-mode: overlay
+    z-index: -1
+                
+/*
+ * Kontaktformular - Custom Elemente
+ */
+
+#contact-form
+    @include defaultFlexCenter(column)
+    width: 90%
+    height: 44rem
+    background: #fff
+    border-radius: 25px
+    padding: 1rem
+    gap: 1rem
+
+    &::before
+        @include gradientBackgroundElement(43rem, 100%)
+
+.custom-textarea
+    height: 13rem
+
+.radio
+    display: flex
+    gap: .7rem
+    margin-bottom: 1rem
+
+.button
+    @include defaultFlexCenter(row)
+    cursor: pointer
+    border: none
+    border-radius: 40px
+    box-shadow: 0 0.5em 0.5em -0.4em lighten(#000, 40%)
+    background: $gradient
+    background-size: 120%
+    width: 15rem
+    height: 3rem
+    color: #fff
+    font-size: 1.1rem
+    font-weight: bold
+    letter-spacing: .1rem
+
+input[type="email"], input[type="text"]
+    height: 3.3rem
+    margin-bottom: 1rem
+
+label[for="covid-check"]
+    font-weight: normal
+
+/*
+ * Footer
+ */
+
+#social-media
+    @include defaultFlexCenter(column)
+    gap: 1rem
+
+#follow-us
+    font-size: 1rem
+    color: #fff
+    font-weight: bold
+    letter-spacing: .1rem
+
+.icon-links
+    display: flex
+    border-radius: 30px
+    border: 2px solid #fff
+    padding: .6rem 1.2rem
+    gap: 1.2rem
+
+.icon
+    @extend .fab
+    font-size: 1.5rem
+    color: #fff
+
+.facebook
+    &::before
+        content: fa-content($fa-var-facebook)
+
+.instagram
+    &::before
+        content: fa-content($fa-var-instagram)
+
+.twitter
+    &::before
+        content: fa-content($fa-var-twitter)
+
+.tiktok
+    &::before
+        content: fa-content($fa-var-tiktok)
+
+#copyright
+    margin: 1rem 0
+    font-weight: 600
+    font-size: .9rem
+    @extend .fas
+
+    &::before
+        content: fa-content($fa-var-shield-virus)
+        margin-right: .5rem
+        font-size: 2.1rem
+
+#footer-link-collection
+    display: grid
+    grid-template-areas: 'a a' 'a a'
+    grid-gap: .2rem 4rem
+    
+/*
+ * Media Queries
+ * 1) Tablet
+ * 2) Desktop
+ */
+
+@include tablet
+
+    input, textarea
+        max-width: 30rem
+        background: #fff
+
+    label
+        color: #fff
+
+    .gradient-link
+        font-size: $defaultMenuTablet
+
+    #content
+        border: 10px solid
+        border-image: $transparent-gradient
+
+    .text-section
+        border: none
+
+    #contact-form
+        background: $gradient
+
+        &::before
+            display: none
+
+    #footer-link-collection
+        grid-template-areas: 'a a a a a'
+        grid-gap: 0 2rem
+
+@include desktop
+        
+    ul:not(.navbar-menu-entries)
+        @include defaultFlexCenter(row)
+        gap: 5rem
+        background: $gradient
+        color: #fff
+        width: inherit
+        padding: 5rem
+        border: 4px solid
+        border-image-slice: 1
+        border-image-source: $navbar-gradient
+
+    input, textarea
+        max-width: 30rem
+        background: #fff
+
+    label
+        color: #fff
+
+    footer
+        flex-direction: row
+        height: 12rem
+
+        &::before
+            margin-bottom: 9rem
+
+    .logo, .hamburger-nav-button
+        font-size: 2rem
+
+    .main-nav
+        height: 5rem
+        opacity: .95
+        padding: 0 1rem
+
+    .show-menu-content
+        .navbar-menu-entries
+            gap: 4rem
+
+    .gradient-link
+        font-size: 2.5rem
+
+    #content
+        margin-top: 2rem
+
+    #text-section
+        width: 100%
+        border-width: 7px
+
+    .white
+        color: #fff
+
+    .image-overlay
+        position: absolute
+        top: 0
+        left: 0
+        border-radius: 0
+        height: 100vh
+        filter: saturate(.6)
+
+    .news-image
+        background-position: cover
+        filter: blur(10px) grayscale(1)
+
+    .news-title
+        font-size: 2.7rem
+        line-height: 3rem
+
+    .news-sub-title
+        font-size: 1.8rem
+
+    #contact-form
+        width: 100%
+        background: $gradient
+
+        &::before
+            display: none
+
+    #copyright
+        font-size: 1.2rem
+        order: 2

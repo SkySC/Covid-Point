@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="" />
+		<link rel="stylesheet" type="text/css" href="../styles/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+		<title>Corona Status</title>
+		<script defer src="../js/hamburger.js"></script>
+	</head>
+	<body>
+		<noscript
+			>Bitte aktiviere JavaScript, um die Webseite richtig darstellen zu
+			können.</noscript
+		>
+		<!-- <header> build entirely in ReactJS -->
+		<div id="root"></div>
+		<nav class="main-nav show-navbar">
+			<button class="hamburger-nav-button">
+				<span class="hamburger-open-icon-line"></span>
+				<span class="hamburger-open-icon-line"></span>
+				<span class="hamburger-open-icon-line"></span>
+			</button>
+			<span class="logo"></span>
+			<div class="hide-menu-content">
+				<ul class="navbar-menu-entries">
+					<li>
+						<a class="gradient-link" href="../index.html">Start</a>
+					</li>
+					<li>
+						<a class="gradient-link" href="">Über uns</a>
+					</li>
+					<li>
+						<a class="gradient-link" href="./pages/kontakt.html"
+							>Termine</a
+						>
+					</li>
+					<li>
+						<a class="gradient-link" href="">Preise</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<main id="content">
+			<section class="text-section">
+				<h2 class="news-title">
+					Benötigen Sie unsere Hilfe? Wir sind gerne und jederzeit für
+					Sie da
+				</h2>
+				<p>
+					Sind Sie oder Bekannte von Ihnen bereits an Covid-19
+					erkrankt? Fühlen Sie sich mit Ihrer Krankheit oder der Ihrer
+					Angehörigen überfordert und benötigen in der Lage dringende
+					Unterstützung?
+				</p>
+				<p>
+					Gerne können Sie uns kontaktieren und Ihre Lage genaustens
+					schildern. Unser Team aus professionellen Therapeuten mit
+					jahrelanger Erfahrung weiß Sie in Ihrer Lage zu
+					unterstützen. Nach gründlicher Prüfung ihrer eingehenden
+					Nachricht, werden wir uns schnellstmöglich mit Ihnen in
+					Verbindung setzen und einen Termin für eine erstmalige
+					Sprechstunde vereinbaren.
+				</p>
+				<p>Dafür füllen Sie bitte folgendes Formular aus:</p>
+			</section>
+			<form id="contact-form" action="">
+				<label class="" for="name">Vollständiger Name</label>
+				<input
+					type="text"
+					name="name"
+					id=""
+					placeholder="Name"
+					required
+				/>
+
+				<label class="" for="email">E-Mail</label>
+				<input
+					type="email"
+					name="email"
+					id=""
+					placeholder="E-Mail"
+					required
+				/>
+
+				<label class="" for="covid-check-overview"
+					>Waren Sie oder Bekannte bereits an Covid-19
+					erkrankt?</label
+				>
+				<div class="radio">
+					<label class="" for="covid-check">Nein</label>
+					<input type="radio" name="covid-check" />
+
+					<label class="" for="covid-check">Ja</label>
+					<input type="radio" name="covid-check" />
+				</div>
+
+				<label class="">Ihre Nachricht</label>
+				<textarea
+					placeholder="Nachricht"
+					class="custom-textarea"
+					required
+				></textarea>
+
+				<button class="button" type="submit" value="">Senden</button>
+			</form>
+		</main>
+		<footer>
+			<div id="social-media">
+				<p id="follow-us">Folge uns auf:</p>
+				<div class="icon-links">
+					<a class="icon facebook" href=""></a>
+					<a class="icon instagram" href=""></a>
+					<a class="icon twitter" href=""></a>
+					<a class="icon tiktok" href=""></a>
+				</div>
+			</div>
+			<span id="copyright">&copy; 2021 Covid Point</span>
+			<div id="footer-link-collection">
+				<a href="">Impressum</a>
+				<a href="">Datenschutz</a>
+				<a href="">Kontakt</a>
+				<a href="">Über uns</a>
+				<a href="">Cookie-Einstellungen</a>
+			</div>
+		</footer>
+	</body>
+</html>

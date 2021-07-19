@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap')
+
+@mixin defaultFlexCenter($dir)
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: $dir
+
+@mixin closedIconLine($deg)
+    position: fixed
+    content: ''
+    opacity: 1
+    width: 1.7rem
+    height: 0.25rem
+    background: #000
+    border-radius: 35%
+    transform: rotate($deg)
+
+@mixin hideItem()
+    opacity: 0
+    transform: translateY(-120%)
+
+@mixin gradientBackgroundElement($height, $width)
+    content: ''
+    position: absolute
+    background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4)
+    border-radius: 40px
+    height: $height
+    width: $width
+    z-index: -1
+
+@mixin tablet
+    @media only screen and (min-width: 376px)
+        @content
+
+@mixin desktop
+    @media only screen and (min-width: 1920px)
+        @content
