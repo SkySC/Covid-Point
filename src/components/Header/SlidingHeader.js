@@ -4,24 +4,17 @@ import SlidingImage from './SlidingImage'
 import NavigationButton from './NavigationButton'
 import SlidingDescription from './SlidingDescription'
 
-import imgURL1 from '../../images/pexels-chokniti-khongchum-2280547.jpg'
-import imgURL2 from '../../images/pexels-cottonbro-3923156.jpg'
-import imgURL3 from '../../images/pexels-miguel-á-padriñán-3936421.jpg'
-import imgURL4 from '../../images/pexels-nataliya-vaitkevich-5863398.jpg'
+import imgURL1 from '../../images/trauriges-maedchen-am-fenster.jpg'
+import imgURL2 from '../../images/covid-kennzahlen.jpg'
+import imgURL3 from '../../images/gluehbirnen-im-wolkenhimmel.jpg'
+import imgURL4 from '../../images/jugendlicher-mit-maske.jpg'
 
 const SlidingImageContainer = styled.div`
 	position: absolute;
-	display: inherit;
-	z-index: -1;
-	width: 100%;
-	height: 100%;
-	overflow-x: hidden;
-`
-
-const Header = styled.header`
 	display: flex;
-	height: 94vh;
 	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
 `
 
 const SlidingHeader = () => {
@@ -36,46 +29,46 @@ const SlidingHeader = () => {
 	}
 
 	return (
-		<Header>
-			<NavigationButton onClick={() => shiftLeft()} left />
-			<NavigationButton onClick={() => shiftRight()} right />
+		<div>
+			<NavigationButton onClick={() => shiftLeft()} left={+true} />
+			<NavigationButton onClick={() => shiftRight()} right={+true} />
 			<SlidingImageContainer>
 				<SlidingImage
 					slideBy={slideBy}
 					imgURL={imgURL1}
-					alt='Mikroskop im Labor'>
-					<SlidingDescription>
-						Lorem ipsum dolor, sit amet consectetur adipisicing
-						elit. Sunt, inventore?
+					alt='Trauriges kleines Mädchen an einem Fenster'>
+					<SlidingDescription href='./belastung_der_pandemie_auf_kinder_und_jugendliche.html'>
+						Wie wirkt sich die Corona-Pandemie auf Kinder und
+						Jugendliche aus?
 					</SlidingDescription>
 				</SlidingImage>
 				<SlidingImage
 					slideBy={slideBy}
 					imgURL={imgURL2}
-					alt='Weiße Pillen die zusammen das Wort Covid-19 formen'>
-					<SlidingDescription>
-						Lorem ipsum, dolor sit amet consectetur adipisicing.
+					alt='Kennzahlen zu Covid-19 auf einem Monitor in der Schrägperspektive'>
+					<SlidingDescription href='./zahlen_zur_auswirkung_der_pandemie_auf_familien_und_ihre_kinder.html'>
+						Zahlen zur Auswirkung der Pandemie auf Familien und
+						Kinder
 					</SlidingDescription>
 				</SlidingImage>
 				<SlidingImage
 					slideBy={slideBy}
 					imgURL={imgURL3}
-					alt='Goldene Pillen und Kapseln auf schwarzem Hintergrund, die zusammen das Wort Covid-19 formen'>
+					alt='Drei Glühbirnen, die aus einem Wolkenhimmel runterhängen'>
 					<SlidingDescription>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Eum, facilis cupiditate?
+						20 Ratschläge um Ihre Familie wieder zusammenzubringen
 					</SlidingDescription>
 				</SlidingImage>
 				<SlidingImage
 					slideBy={slideBy}
 					imgURL={imgURL4}
-					alt='OP-Maske mit Spritzen und Impfdosen auf einem hellblauen Hintergrund'>
+					alt='Jugendlicher mit aufgesetzter FFP2-Maske im Freien'>
 					<SlidingDescription>
-						Lorem ipsum dolor sit amet.
+						Was hilft gegen Einsamkeit in der Corona-Pandemie?
 					</SlidingDescription>
 				</SlidingImage>
 			</SlidingImageContainer>
-		</Header>
+		</div>
 	)
 }
 

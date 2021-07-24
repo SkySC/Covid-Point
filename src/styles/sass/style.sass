@@ -15,6 +15,7 @@
 
 html
     scroll-behavior: smooth
+    // Hide scrollbar
     -ms-overflow-style: none
     scrollbar-width: none
 
@@ -25,41 +26,67 @@ body
     @include defaultFlexCenter(column)
     gap: 5rem
 
+q
+    padding: .8rem
+    font-style: italic
+    font-size: $mobileFont
+    line-height: 1.95rem
+    letter-spacing: .05rem
+
+    &::before
+        content: open-quote
+        color: $lighterBlack
+        font-size: $mobileQuoteSize
+
+    &::after
+        content: close-quote
+        color: $lighterBlack
+        font-size: $mobileQuoteSize
+
 span
     color: #fff
     font-size: 1.4rem
     line-height: 1.5rem
+
+em
+    font-weight: bold
 
 a
     text-decoration: none
     color: #fff
 
 p
-    font-size: 1.3rem
-    line-height: 2rem
-    max-width: 60rem
+    font-size: $mobileFont
+    line-height: $mobileLineHeight
+    letter-spacing: $letterSpacing
+
+h2, h3
+    letter-spacing: $boldLetterSpacing
 
 ul
-    padding: 1.4rem
+    @include defaultFlexCenter(column)
+    align-items: start
+    padding: 1.2rem
+    gap: 1.3rem
 
-    li
-        font-size: $defaultText
-        line-height: $defaultLineHeight
-        text-align: left
-        max-width: 60rem
+li
+    font-size: $mobileFont
+    line-height: $listItemLineHeight
+    text-align: start
+    max-width: 25rem
 
 img
-    @extend .image-overlay
+    z-index: $imageIndexZ
     filter: grayscale(1)
-    z-index: -1
 
 label
+    padding: .3rem
+    font-size: $mobileFont
     font-weight: bold
-    letter-spacing: .1rem
 
 input, textarea
     width: 90%
-    box-shadow: 0 0.5em 0.5em -0.4em lighten(#000, 40%)
+    box-shadow: $formShadow
     border: none
     border-radius: 20px
     padding: .5rem 1rem
@@ -67,8 +94,8 @@ input, textarea
 
 footer
     @include defaultFlexCenter(column)
-    height: 20rem
-    width: 100vw
+    height: $footerHeight
+    width: $footerWidth
     background: $gradient
     border-radius: 30px 30px 0 0
     gap: 10%
@@ -86,12 +113,11 @@ footer
  */
 
 .logo
-    color: lighten(#000, 30%)
-    justify-self: flex-end
-
     @extend .fas
-    font-size: 1.6rem
-
+    z-index: $navbarIndexZ
+    color: $lighterBlack
+    justify-self: flex-end
+    font-size: $navbarLogoSize
     transition: $navbarTransition
 
     &::before
@@ -100,71 +126,75 @@ footer
 .hide-logo
     @include hideItem()
 
+.logo.big
+    z-index: unset
+    font-size: 4rem
+    margin-bottom: 2rem
+
+.main-nav
+    z-index: $navbarIndexZ
+    display: grid
+    grid-template-columns: 1fr 1fr
+    align-items: center
+    padding: 0 .5rem
+    position: fixed
+    width: $navbarMobileWidth
+    height: $navbarMobileHeight
+    top: 0
+    background: #fff
+    border-bottom: 4.5px solid
+    border-image-slice: 1
+    border-image-source: $navbarGradient
+    transition: $navbarTransition
+    
 .show-navbar
     opacity: 1
 
 .hide-navbar
     @include hideItem()
 
-.main-nav
-    display: grid
-    grid-template-columns: 1fr 1fr
-    align-items: center
-    padding: 0 .5rem
-    position: fixed
-    width: 100vw
-    height: 3rem
-    top: 0
-    background: #fff
-    border-bottom: 4px solid
-    border-image-slice: 1
-    border-image-source: $navbar-gradient
-    transition: $navbarTransition
-
 .hide-menu-content
     @include defaultFlexCenter(column)
     position: absolute
-    top: 0
-    transition: $defaultTransition
-    left: -100%
+    top: -100vh
     width: 100vw
     height: 100vh
     opacity: 0
-
-    .navbar-menu-entries
-        opacity: 0
-
-.show-menu-content
-    background: #fff
-    transition: left linear .3s, opacity linear .3s
-    left: 0
-    opacity: 1
+    transition: 2s
 
     .navbar-menu-entries
         @include defaultFlexCenter(column)
         list-style: none
-        gap: 2rem
-        transition: opacity 3s ease
+        gap: 3rem
+        opacity: 0
+
+.show-menu-content
+    background: #fff
+    transition: 1s
+    top: 0
+    opacity: 1
+
+    .navbar-menu-entries
+        transition: 2s .5s
         opacity: 1
 
         li
-            font-size: $defaultMenu
+            font-size: $mobileMenuLinksFont
             font-weight: bold
 
-.gradient-link
-    text-decoration: none
-    background: $text-gradient
-    -webkit-text-fill-color: transparent
-    -webkit-background-clip: text
+.menu-links
+    color: $lighterBlack
+    letter-spacing: $letterSpacing
 
 .hide-hamburger-nav-button
     @include hideItem()
 
 .hamburger-nav-button
-    z-index: 1
     @include defaultFlexCenter(column)
+    z-index: $navbarIndexZ
+    align-items: flex-start
     cursor: pointer
-    width: 2rem
+    width: $navbarHamburgerIconSize
     aspect-ratio: 1 / 1
     background: transparent    
     gap: 0.4rem
@@ -174,100 +204,138 @@ footer
 .hamburger-open-icon-line
     width: 100%
     height: 0.25rem
-    border-radius: 30%
+    border-radius: 30px
     background: $lighterBlack
-    transition: all .4s linear .3s
-
-    &:nth-of-type(2)
-        align-self: flex-start
-        width: 1.5rem
-        opacity: 1
-        
-        &::before
-            @include closedIconLine(-45deg)
-            transition: all .5s linear
-            opacity: 0
-
-        &::after
-            @include closedIconLine(-45deg)
-            transition: all .5s linear
-            opacity: 0
-
-.hamburger-closed-icon
-    transition: all .4s linear
+    transition: .5s .3s
 
     &:first-of-type
+        width: 1.2rem
+
+    &:nth-of-type(2)
+        width: calc(1.2rem + .4rem)
+        transition: .5s .7s
+            
+        &::after
+            @include closedIconLine(45deg)
+            opacity: 0
+            transition: .5s
+
+    &:last-of-type
+        width: calc(1.2rem + 2 * .4rem)
+
+.hamburger-closed-icon
+    transition: .5s
+
+    &:first-of-type, &:last-of-type
         width: 0
         opacity: 0
 
     &:nth-of-type(2)
-        width: 0
-        opacity: 1
-
-        &::before
-            @include closedIconLine(-45deg)
-            transition: all .5s linear .45s
+        background: $gradient
+        transform: rotate(-45deg)
+        transition: .5s .5s
 
         &::after
-            @include closedIconLine(45deg)
-            transition: all .5s linear .45s
-    
-    &:last-of-type
-        width: 0
-        opacity: 0
+            @include closedIconLine(90deg)
+            transition: .5s .5s
 
 /*
  * Hauptbereich mit Inhalten
  */
 
-#content
+#react-header
+    height: 100vh
+    width: 100vw
+
+.landing-page
     @include defaultFlexCenter(column)
-    width: 100%
+    max-width: $textWidth
     gap: 2rem
 
-.text-section
+#content
     @include defaultFlexCenter(column)
-    gap: 2rem
+    width: $contentWidth
+    gap: 2.5rem
+    margin-top: 5rem
+    border: 4px solid
+    border-image: $transparentGradient
+
+.white-background-desktop
+    // gap unnecessary
+    margin-bottom: -2.5rem
+
+    .news-title
+        // little space between main title and paragraph
+        margin-bottom: 2rem
+
+.text-section
+    @include defaultFlexCenter(inherit)
+    gap: 2.4rem
     width: 90vw
-    max-width: 60rem
+    max-width: $textWidth
     padding: 0 1rem
-    border: 3px solid
-    border-image: $transparent-gradient
     color: lighten(#000, 20%)
+
+.link-to-article
+    color: $lighterBlack
+    text-decoration: underline
+    text-decoration-style: dashed
+
+.image-statistik
+    filter: grayscale(0)
+    width: 100%
+    height: 100%
+    min-height: 12rem
+    border-radius: 0
+
+    &::before
+        @include gradientBackgroundElement(10rem, 20rem)
+        z-index: $gradientBgIndexZ
 
 .numbered-bullet-points
     list-style: decimal
 
-.news-title, .news-sub-title
-    font-size: 1.4rem
-    line-height: 2.3rem
-    margin-bottom: 1.8rem
+.news-title
+    font-size: $mobileHeadline
+    line-height: $mobileHeadlineLineHeight
     text-align: center
-    letter-spacing: .1rem
+
+.news-title.italic
+    font-style: italic
+
+.news-sub-title
+    font-size: $mobileSubHeadline
+    line-height: $mobileSubHeadlineLineHeight
+
+.news-image
+    width: 100%
+    height: 100%
 
 .image-overlay
+    z-index: $imageIndexZ
+    position: relative
     width: 100%
     min-height: 13rem
     background: $gradient
     border-radius: 30px
     mix-blend-mode: overlay
-    z-index: -1
                 
 /*
- * Kontaktformular - Custom Elemente
+ * Kontaktformular
  */
 
 #contact-form
     @include defaultFlexCenter(column)
-    width: 90%
-    height: 44rem
+    width: $mobileFormWidth
+    height: 56rem
     background: #fff
     border-radius: 25px
     padding: 1rem
     gap: 1rem
+    margin-top: 2rem
 
     &::before
-        @include gradientBackgroundElement(43rem, 100%)
+        @include gradientBackgroundElement(55rem, 100%)
 
 .custom-textarea
     height: 13rem
@@ -282,15 +350,15 @@ footer
     cursor: pointer
     border: none
     border-radius: 40px
-    box-shadow: 0 0.5em 0.5em -0.4em lighten(#000, 40%)
+    box-shadow: $formShadow
     background: $gradient
     background-size: 120%
     width: 15rem
     height: 3rem
     color: #fff
-    font-size: 1.1rem
+    font-size: $buttonFont
     font-weight: bold
-    letter-spacing: .1rem
+    margin-top: 1rem
 
 input[type="email"], input[type="text"]
     height: 3.3rem
@@ -298,6 +366,14 @@ input[type="email"], input[type="text"]
 
 label[for="covid-check"]
     font-weight: normal
+
+label:not([for="covid-check"])
+    &::after
+        content: '*'
+        position: absolute
+        margin-left: .2rem
+        font-size: 1.1rem
+        color: #eb4034
 
 /*
  * Footer
@@ -308,7 +384,7 @@ label[for="covid-check"]
     gap: 1rem
 
 #follow-us
-    font-size: 1rem
+    font-size: .9rem
     color: #fff
     font-weight: bold
     letter-spacing: .1rem
@@ -344,7 +420,7 @@ label[for="covid-check"]
 #copyright
     margin: 1rem 0
     font-weight: 600
-    font-size: .9rem
+    font-size: $mobileCopyrightFont
     @extend .fas
 
     &::before
@@ -356,7 +432,7 @@ label[for="covid-check"]
     display: grid
     grid-template-areas: 'a a' 'a a'
     grid-gap: .2rem 4rem
-    
+
 /*
  * Media Queries
  * 1) Tablet
@@ -365,37 +441,76 @@ label[for="covid-check"]
 
 @include tablet
 
+    p, q, li
+        font-size: $tabletFont
+
+    p
+        line-height: $tabletLineHeight
+
+    q
+        line-height: 2.4rem
+
+        &::before, &::after
+            font-size: $tabletQuoteSize
+
+    label
+        font-size: $tabletFont
+        color: #fff
+
     input, textarea
         max-width: 30rem
         background: #fff
 
-    label
-        color: #fff
+    .main-nav, .hide-menu-content
+        width: $mediaNavbarWidth
 
-    .gradient-link
-        font-size: $defaultMenuTablet
+    .menu-links
+        font-size: $tabletMenuLinksFont
 
     #content
-        border: 10px solid
-        border-image: $transparent-gradient
+        border-width: 10px
 
-    .text-section
-        border: none
+    .logo.big
+        font-size: 6rem
+        margin-bottom: 2.5rem
 
     #contact-form
         background: $gradient
+        box-shadow: 6px 10px 14px -10px rgba(0,0,0,0.5)
 
         &::before
             display: none
+
+    .news-title
+        font-size: $tabletHeadline
+        line-height: $tabletHeadlineLineHeight
+
+    .news-sub-title
+        font-size: $tabletSubHeadline
+        line-height: $tabletSubHeadlineLineHeight
 
     #footer-link-collection
         grid-template-areas: 'a a a a a'
         grid-gap: 0 2rem
 
 @include desktop
+
+    p
+        font-size: $desktopFont
+        line-height: $desktopLineHeight
+
+    q
+        font-size: 1.6rem
+
+        &::before, &::after
+            font-size: 2.7rem
+
+    li
+        font-size: $desktopFont
         
     ul:not(.navbar-menu-entries)
         @include defaultFlexCenter(row)
+        align-items: start
         gap: 5rem
         background: $gradient
         color: #fff
@@ -403,7 +518,7 @@ label[for="covid-check"]
         padding: 5rem
         border: 4px solid
         border-image-slice: 1
-        border-image-source: $navbar-gradient
+        border-image-source: $navbarGradient
 
     input, textarea
         max-width: 30rem
@@ -414,35 +529,73 @@ label[for="covid-check"]
 
     footer
         flex-direction: row
-        height: 12rem
+        height: $desktopFooterHeight
 
         &::before
             margin-bottom: 9rem
+
+    .gradient-spot
+        &::after
+            @include gradientBackgroundSpot(100vh, 100vw)
+            z-index: $gradientSpotIndexZ
+            top: 0
 
     .logo, .hamburger-nav-button
         font-size: 2rem
 
     .main-nav
         height: 5rem
-        opacity: .95
+        width: $mediaNavbarWidth
         padding: 0 1rem
+
+    .hide-menu-content
+        width: $mediaNavbarWidth
 
     .show-menu-content
         .navbar-menu-entries
             gap: 4rem
 
-    .gradient-link
-        font-size: 2.5rem
+    .menu-links
+        font-size: 2.2rem
 
     #content
-        margin-top: 2rem
+        // shift content with text away from header
+        margin-top: 7rem
+
+    .landing-page
+        @include defaultFlexCenter(column)
+        gap: 3rem
+        height: 100vh
+        width: 100vw
+        color: #fff
+        // reset margin-top to center title
+        margin-top: -7rem
+
+    .white-background-desktop
+        background: #fff
+        padding: 3rem
+        border-radius: 30px
+        opacity: .95
+
+        & > *
+            color: $lighterBlack
+
+        .news-title
+            margin-bottom: 4rem
+
+    .nav-arrow-down
+        @include navArrowDown(#fff)
+
+    .nav-arrow-down.black
+        background: $lighterBlack
+        opacity: .6
 
     #text-section
         width: 100%
         border-width: 7px
 
-    .white
-        color: #fff
+    .news-image
+        filter: blur(2px) grayscale(1)
 
     .image-overlay
         position: absolute
@@ -452,24 +605,29 @@ label[for="covid-check"]
         height: 100vh
         filter: saturate(.6)
 
-    .news-image
-        background-position: cover
-        filter: blur(10px) grayscale(1)
-
     .news-title
-        font-size: 2.7rem
-        line-height: 3rem
+        font-size: $desktopHeadline
+        line-height: $desktopHeadlineLineHeight
 
     .news-sub-title
-        font-size: 1.8rem
+        font-size: $desktopSubHeadline
+        line-height: $desktopSubHeadlineLineHeight
 
-    #contact-form
-        width: 100%
-        background: $gradient
+    .news-sub-title.summary
+        @include defaultFlexCenter(row)
 
         &::before
-            display: none
+            @include summaryTitleStyle(-50%)
+            
+        &::after
+            @include summaryTitleStyle(50%)
+
+    #contact-form
+        width: $desktopFormWidth
+        border-radius: 0
 
     #copyright
-        font-size: 1.2rem
+        font-size: $desktopCopyrightFont
         order: 2
+
+@include supportsHover

@@ -7,12 +7,12 @@
     flex-direction: $dir
 
 @mixin closedIconLine($deg)
-    position: fixed
     content: ''
+    position: absolute
     opacity: 1
-    width: 1.7rem
+    width: calc(1.2rem + .7rem)
     height: 0.25rem
-    background: #000
+    background: linear-gradient(to left, #7f7fd5,#91eae4)
     border-radius: 35%
     transform: rotate($deg)
 
@@ -23,16 +23,50 @@
 @mixin gradientBackgroundElement($height, $width)
     content: ''
     position: absolute
-    background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4)
+    background: linear-gradient(to left, #7f7fd5, #86a8e7, #91eae4)
     border-radius: 40px
     height: $height
     width: $width
     z-index: -1
 
+@mixin gradientBackgroundSpot($height, $width)
+    content: ''
+    position: absolute
+    background: linear-gradient(to left, #7f7fd5, #86a8e7, #91eae4)
+    height: $height
+    width: $width
+    box-shadow: 0 0 200px 180px white inset
+
+@mixin navArrowDown($color)
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 2rem
+    margin: auto
+    width: 2rem
+    height: .8rem
+    background: $color
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%)
+    transform: rotate(180deg)
+    cursor: pointer
+
+@mixin summaryTitleStyle($marginLeft)
+    content: ''
+    position: absolute
+    margin-left: $marginLeft
+    width: 35%
+    height: .15rem
+    background: linear-gradient(to left, #fff, #7f7fd5, #86a8e7, #91eae4, #fff)
+    opacity: .6
+
 @mixin tablet
-    @media only screen and (min-width: 376px)
+    @media only screen and (min-width:  768px)
         @content
 
 @mixin desktop
     @media only screen and (min-width: 1920px)
+        @content
+
+@mixin supportsHover
+    @media (hover: hover)
         @content

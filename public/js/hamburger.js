@@ -1,11 +1,15 @@
 // Toggle navbar icon on click
+const hamburgerButton = document.querySelector('.hamburger-nav-button')
 const hamburgerIconLines = document.querySelectorAll(
 	'.hamburger-open-icon-line',
 )
 const logo = document.querySelector('.logo')
+const navbar = document.querySelector('.main-nav')
+const arrowDown = document.querySelector('.nav-arrow-down')
+const targetElement = document.querySelector('.scroll-target')
 
 let menuIsOpen = false
-const hamburgerButton = document.querySelector('.hamburger-nav-button')
+
 hamburgerButton.addEventListener('click', () => {
 	menuIsOpen = !menuIsOpen
 
@@ -13,7 +17,8 @@ hamburgerButton.addEventListener('click', () => {
 	if (menuIsOpen) {
 		const currentOffsetY = window.scrollY
 		document.body.style.position = 'fixed'
-		document.body.style.top = `${-currentOffsetY}px`
+		document.body.style.top = `-${currentOffsetY}px`
+		// Auto scroll to previous position
 	} else {
 		const currentBodyOffsetY = document.body.style.top
 		document.body.style.position = ''
@@ -34,9 +39,9 @@ hamburgerButton.addEventListener('click', () => {
 // Hide navbbar on scroll down & show on scroll up
 let lastScrollYPos = 0
 
-const navbar = document.querySelector('.main-nav')
 window.addEventListener('scroll', () => {
 	const currentYOffset = window.scrollY
+
 	if (currentYOffset > lastScrollYPos) {
 		navbar.classList.remove('show-navbar')
 		navbar.classList.add('hide-navbar')
@@ -47,3 +52,12 @@ window.addEventListener('scroll', () => {
 
 	lastScrollYPos = currentYOffset < 0 ? 0 : currentYOffset
 })
+
+// Scroll down to text on click on navigation arrow
+arrowDown.addEventListener('click', () =>
+	targetElement.scrollIntoView({
+		left: 0,
+		block: 'start',
+		behavior: 'smooth',
+	}),
+)

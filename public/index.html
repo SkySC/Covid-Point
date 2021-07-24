@@ -2,21 +2,33 @@
 <html lang="de">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="" />
+		<link rel="icon" href="./static/media/icon/favicon-32x32.png" />
 		<link rel="stylesheet" type="text/css" href="./styles/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="" />
-		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-		<title>Corona Status</title>
-		<script defer src="./js/hamburger.js"></script>
+		<meta
+			name="description"
+			content="Unser Therapiezentrum Covid Point in Heidelberg für Familien mit ihren Kindern verhilft Ihnen zu ihrem Seelenfrieden in der Pandemie zurückzufinden"
+		/>
+		<meta
+			name="keywords"
+			content="Covid-19, Psychotherapie, Heidelberg, Therapiezentrum, Pandemie, Coronavirus, Familientherapie, Einzeltherapie"
+		/>
+		<link rel="manifest" href="./manifest.json" />
+		<title>
+			Covid Point - Therapiezentrum für Familien und ihre Kinder
+		</title>
+		<script src="./js/hamburger.js" defer></script>
 	</head>
 	<body>
 		<noscript
-			>Bitte aktiviere JavaScript, um die Webseite richtig anzeigen
-			darstellen zu können.</noscript
+			>Bitte aktiviere JavaScript, um die Webseite richtig darstellen zu
+			können.</noscript
 		>
-		<!-- <header> build entirely in ReactJS -->
-		<div id="root"></div>
+		<header id="react-header">
+			<!-- ReactJS Image Slider component -->
+			<div id="root"></div>
+			<span class="nav-arrow-down"></span>
+		</header>
 		<nav class="main-nav show-navbar">
 			<button class="hamburger-nav-button">
 				<span class="hamburger-open-icon-line"></span>
@@ -25,46 +37,63 @@
 			</button>
 			<span class="logo"></span>
 			<div class="hide-menu-content">
-				<ul>
+				<ul class="navbar-menu-entries">
 					<li>
-						<a class="gradient-link" href="">Start</a>
+						<a class="menu-links" href="">Start</a>
 					</li>
 					<li>
-						<a class="gradient-link" href="">Über uns</a>
+						<a class="menu-links" href="./kontakt.html">Kontakt</a>
 					</li>
 					<li>
-						<a class="gradient-link" href="./pages/kontakt.html"
-							>Termine</a
-						>
+						<a class="menu-links" href="">Über uns</a>
 					</li>
 					<li>
-						<a class="gradient-link" href="">Preise</a>
+						<a class="menu-links" href="">Anfahrt</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
 		<main id="content">
-			<section>
-				<h2 class="news-title">Example</h2>
+			<section class="text-section scroll-target">
+				<span class="logo big"></span>
+				<h2 class="news-title">Covid Point - Therapiezentrum</h2>
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex
-					quos facere nesciunt commodi temporibus sapiente quasi
-					magnam. Modi sequi quae reiciendis voluptatibus ducimus
-					dolores perferendis optio earum velit ipsum porro odio
-					consequuntur sed excepturi assumenda officia nihil amet
-					doloribus ut, placeat enim cupiditate eaque tempora hic!
-					Omnis quo impedit sequi quod tempore quam consequuntur,
-					mollitia velit quos, eos molestias magnam, officia rem. Non
-					blanditiis hic maiores saepe magni tenetur cupiditate eum
-					temporibus fugiat, quam repudiandae? Temporibus quae odit,
-					doloribus iusto necessitatibus praesentium exercitationem
-					consequuntur eos minima possimus? Placeat, iure doloribus?
+					Lockdown, Kontaktbeschränkungen, Hygienemaßnahmen und
+					Homeschooling – Begriffe die seit Frühjahr 2020 durch die
+					Medien gehen. Die globale Coronapandemie hat den Erhalt
+					unserer Lebensqualität um ein Vielfaches erschwert. Die
+					Kontaktbeschränkungen haben dazu beigetragen, dass viele
+					Menschen vereinsamt sind und sich zurückgezogen haben. Doch
+					wie wirkt sich die Pandemie auf die psychische Entwicklung
+					unserer Kinder aus?
+				</p>
+				<p>
+					Wir von Covid Point haben uns mit dieser Frage beschäftigt
+					und auch mit dem Thema, wie Eltern umfassend über Symptome
+					einer psychischen Belastungsreaktion oder einer Depression
+					aufgeklärt werden können. Auf unserer Webseite finden Sie
+					sowohl aktuelle, wissenschaftliche Artikel und Informationen
+					zu den verschiedenen Auswirkungen der Coronapandemie auf die
+					Psyche eines Kindes, als auch diverse Statistiken zu
+					entwickelbaren Ängsten und psychische Folgen in Bezug auf
+					die Kontaktbeschränkungen, das Homeschooling und vieles
+					mehr.
+				</p>
+				<p>
+					Sollten Sie spezifische Symptome oder Auffälligkeiten bei
+					Ihrem Kind bemerken, können Sie sich über unser
+					bereitgestelltes
+					<a href="./kontakt.html" class="link-to-article"
+						>Kontaktformular</a
+					>
+					an einen anerkannten und für Ihre Lage passenden
+					Psychotherapeuten vermitteln lassen.
 				</p>
 			</section>
 		</main>
 		<footer>
 			<div id="social-media">
-				<p class="follow-us">Folge uns auf:</p>
+				<p id="follow-us">Folge uns auf:</p>
 				<div class="icon-links">
 					<a class="icon facebook" href=""></a>
 					<a class="icon instagram" href=""></a>
@@ -72,11 +101,11 @@
 					<a class="icon tiktok" href=""></a>
 				</div>
 			</div>
-			<span id="copyright">&copy; 2021 Covid Point</span>
-			<div class="footer-link-collection">
+			<span id="copyright">Covid Point &copy; 2021</span>
+			<div id="footer-link-collection">
 				<a href="">Impressum</a>
 				<a href="">Datenschutz</a>
-				<a href="./pages/kontakt.html">Kontakt</a>
+				<a href="./kontakt.html">Kontakt</a>
 				<a href="">Über uns</a>
 				<a href="">Cookie-Einstellungen</a>
 			</div>

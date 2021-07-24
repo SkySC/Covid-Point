@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../../src/styles/sass/fontawesome/regular.scss","../../../src/styles/sass/fontawesome/_variables.scss"],"names":[],"mappings":"AAAA;AAAA;AAAA;AAAA;AAMA;EACE;EACA;EACA;EACA,cCLgB;EDMhB;EACA;;AAOF;EACE;EACA","file":"regular.css"}
+{"version":3,"sourceRoot":"","sources":["../../../src/styles/sass/fontawesome/regular.scss","../../../src/styles/sass/fontawesome/_variables.scss"],"names":[],"mappings":"AAAA;AAAA;AAAA;AAAA;AAMA;EACC;EACA;EACA;EACA,cCLiB;EDMjB;EACA;;AAQD;EACC;EACA","file":"regular.css"}
