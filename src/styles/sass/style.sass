@@ -343,7 +343,7 @@ footer
 .radio
     display: flex
     gap: .7rem
-    margin-bottom: 1rem
+    margin-bottom: 1rem        
 
 .button
     @include defaultFlexCenter(row)
@@ -360,14 +360,14 @@ footer
     font-weight: bold
     margin-top: 1rem
 
-input[type="email"], input[type="text"]
+#name, #email, #phone
     height: 3.3rem
     margin-bottom: 1rem
 
 label[for="covid-check"]
     font-weight: normal
 
-label:not([for="covid-check"])
+label:not([for="covid-check-no"]):not([for="covid-check-yes"])
     &::after
         content: '*'
         position: absolute
@@ -629,5 +629,3 @@ label:not([for="covid-check"])
     #copyright
         font-size: $desktopCopyrightFont
         order: 2
-
-@include supportsHover
